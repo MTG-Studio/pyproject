@@ -2,3 +2,4 @@ Widget.7z
 .idea
 .mypy_cache
 venv
+src/__pycache__
