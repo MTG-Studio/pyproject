@@ -33,5 +33,5 @@ dict_list = [{'id': 41428829,
               'date': '2018-10-14T08:21:33.419441'}]
 state_filter = 'CANCELED'
 
-filter_by_state(dict_list, state_filter)
-sort_by_date(dict_list)
+print(filter_by_state(dict_list, state_filter))
+print(sort_by_date(dict_list))
