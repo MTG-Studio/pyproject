@@ -6,7 +6,7 @@ def get_mask_card_number(card: str) -> str:
     mask = card[:6] + "*" * (len(card) - 10) + card[(len(card) - 4):]
     result_mask = ""
     for i in range(len(mask)):
-        if (i + 1) % 4 == 0:
+        if (i + 1) % 4 == 0 and (i + 1) < len(mask):
             result_mask += mask[i] + " "
         else:
             result_mask += mask[i]
