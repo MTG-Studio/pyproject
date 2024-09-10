@@ -1,5 +1,3 @@
-import os
-
 
 def get_mask_card_number(card: str) -> str:
     """Маскирует и отображает номер карты в формате XXXX XX** **** XXXX"""
