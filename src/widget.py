@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 def mask_account_card(account_card: str) -> str:
     """Маскирует и отображает номер карты в формате 'Visa Platinum 7000 79** **** 6361'
     или номер счета в формате 'Счет **4305'"""
@@ -27,7 +30,9 @@ def mask_account_card(account_card: str) -> str:
 def get_date(date: str) -> str:
     """принимает на вход строку с датой в формате "2024-03-11T02:26:18.671407"
     и возвращает строку с датой в формате "ДД.ММ.ГГГГ"("11.03.2024")"""
-    return f"{date[8:10]}.{date[5:7]}.{date[:4]}"
+    result_datetime = str(datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%f"))
+    result_date = result_datetime[8:10] + "." + result_datetime[5:7] + "." + result_datetime[:4]
+    return result_date
 
 
 # Проверка работы функции mask_account_card:

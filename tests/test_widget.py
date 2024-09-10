@@ -1,5 +1,6 @@
 import pytest
-from src.widget import mask_account_card, get_date
+
+from src.widget import get_date, mask_account_card
 
 
 @pytest.mark.parametrize("account_card, expected",
@@ -22,3 +23,24 @@ def test_mask_account_card_empty():
 def test_mask_account_card_wrong_type():
     with pytest.raises(TypeError):
         mask_account_card(1)
+
+
+@pytest.mark.parametrize("date, expected",
+                         [("2024-03-11T02:26:18.671407", "11.03.2024")])
+def test_get_date(date, expected):
+    assert get_date(date) == expected
+
+
+def test_get_date_incorrect_date():
+    with pytest.raises(ValueError):
+        get_date("24-03-11T02:26:18.671407")
+
+
+def test_get_date_empty():
+    with pytest.raises(ValueError):
+        get_date("24-03-11T02:26:18.671407")
+
+
+def test_get_date_wrong_type():
+    with pytest.raises(TypeError):
+        get_date(2)
