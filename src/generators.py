@@ -103,6 +103,10 @@ def transaction_descriptions(transact):
 
 
 def card_number_generator(start, stop):
+    if start < 0:
+        start = 0
+    if stop > 9999999999999999:
+        stop = 9999999999999999
     while start <= stop:
         format_card = "{:016d}".format(start)
         yield format_card[:4] + " " + format_card[4:8] + " " + format_card[8:12] + " " + format_card[12:]
@@ -122,5 +126,5 @@ for i in range(6):
 
 
 # Проверка работы функции card_number_generator
-for card_number in card_number_generator(1000, 50):
+for card_number in card_number_generator(-1, 50):
     print(card_number)
