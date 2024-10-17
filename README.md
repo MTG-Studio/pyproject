@@ -111,12 +111,11 @@ for card_number in card_number_generator(1, 5):
 ```
 ## Установка:
 
-1. Клонируйте репозиторий:
+- Клонируйте репозиторий:
 ```
 git clone https://github.com/MTG-Studio/pyproject.git
 ```
-
-2. Установите зависимости:
+- Установите зависимости:
 ```
 black 24.4.2
 flake8 7.1.0
