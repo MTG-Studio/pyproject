@@ -105,6 +105,10 @@ def transaction_descriptions(transact):
 def card_number_generator(start, stop):
     if start < 0:
         start = 0
+    if start > 9999999999999999:
+        start = 9999999999999999
+    if stop < 0:
+        stop = 0
     if stop > 9999999999999999:
         stop = 9999999999999999
     while start <= stop:
