@@ -1,5 +1,6 @@
-from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 import pytest
+
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
 # Тестирование функции filter_by_currency
@@ -17,7 +18,8 @@ def test_filter_by_currency_usd(transactions_fix):
                                'operationAmount': {'amount': '56883.54', 'currency': {'name': 'USD', 'code': 'USD'}},
                                'description': 'Перевод с карты на карту', 'from': 'Visa Classic 6831982476737658',
                                'to': 'Visa Platinum 8990922113665229'}
-    assert next(generator) is None
+    with pytest.raises(StopIteration):
+        assert next(generator)
 
 
 def test_filter_by_currency_rub(transactions_fix):
@@ -30,27 +32,32 @@ def test_filter_by_currency_rub(transactions_fix):
                                'operationAmount': {'amount': '67314.70', 'currency': {'name': 'руб.', 'code': 'RUB'}},
                                'description': 'Перевод организации', 'from': 'Visa Platinum 1246377376343588',
                                'to': 'Счет 14211924144426031657'}
-    assert next(generator) is None
+    with pytest.raises(StopIteration):
+        assert next(generator)
 
 
 def test_filter_by_currency_error_currency(transactions_fix):
     generator = filter_by_currency(transactions_fix, "RU")
-    assert next(generator) is None
+    with pytest.raises(StopIteration):
+        assert next(generator)
 
 
 def test_filter_by_currency_empty(transactions_fix):
     generator = filter_by_currency(transactions_fix, "")
-    assert next(generator) is None
+    with pytest.raises(StopIteration):
+        assert next(generator)
 
 
 def test_filter_by_currency_number(transactions_fix):
     generator = filter_by_currency(transactions_fix, 1)
-    assert next(generator) is None
+    with pytest.raises(StopIteration):
+        assert next(generator)
 
 
 def test_filter_by_currency_empty_list():
     generator = filter_by_currency([], "USD")
-    assert next(generator) is None
+    with pytest.raises(StopIteration):
+        assert next(generator)
 
 
 # Тестирование функции transaction_descriptions
@@ -61,12 +68,14 @@ def test_transaction_descriptions(transactions_fix):
     assert next(generator) == "Перевод со счета на счет"
     assert next(generator) == "Перевод с карты на карту"
     assert next(generator) == "Перевод организации"
-    assert next(generator) is None
+    with pytest.raises(StopIteration):
+        assert next(generator)
 
 
 def test_transaction_descriptions_empty_list():
     generator = transaction_descriptions([])
-    assert next(generator) is None
+    with pytest.raises(StopIteration):
+        assert next(generator)
 
 
 def test_transaction_descriptions_number():

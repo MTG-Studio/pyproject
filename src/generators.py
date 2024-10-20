@@ -80,29 +80,21 @@ transactions = (
 
 
 def filter_by_currency(transact, currency):
-    count = 0
-    while True:
-        if count >= len(transact):
-            yield None
-        else:
-            if transact[count]["operationAmount"]["currency"]["code"] == currency:
-                yield transact[count]
-        count += 1
+    """Функция возвращающает итератор, который поочередно выдает транзакции,
+    где валюта операции соответствует заданной (например, USD)."""
+    for transaction in transact:
+        if transaction["operationAmount"]["currency"]["code"] == currency:
+            yield transaction
 
 
 def transaction_descriptions(transact):
-    descriptions_list = []
-    count = 0
-    while True:
-        if count >= len(transact):
-            yield None
-        else:
-            descriptions_list.append(transact[count].get("description"))
-            yield descriptions_list[count]
-        count += 1
+    """Функция принимает список словарей с транзакциями и возвращает описание каждой операции по очереди."""
+    for transaction in transact:
+        yield transaction.get("description")
 
 
 def card_number_generator(start, stop):
+    """Функция выдает номера банковских карт в формате XXXX XXXX XXXX XXXX"""
     if start < 0:
         start = 0
     if start > 9999999999999999:
@@ -119,13 +111,13 @@ def card_number_generator(start, stop):
 
 # Проверка работы функции filter_by_currency
 usd_transactions = filter_by_currency(transactions, "RUB")
-for i in range(3):
+for i in range(2):
     print(next(usd_transactions))
 
 
 # Проверка работы функции transaction_descriptions
 descriptions = transaction_descriptions(transactions)
-for i in range(6):
+for i in range(5):
     print(next(descriptions))
 
 
