@@ -1,8 +1,9 @@
-# from src.widget import get_date, mask_account_card
+from src.masks import get_mask_card_number, get_mask_account
+from src.widget import get_date, mask_account_card
 from src.processing import filter_by_state, sort_by_date
 
-# card_number = "4272678916515987"
-# print(get_mask_card_number(card_number))
+card_number = "4272678916515987"
+print(get_mask_card_number(card_number))
 
 # account_number = "243504759435743295437990090"
 # print(get_mask_account(account_number))
@@ -19,7 +20,7 @@ from src.processing import filter_by_state, sort_by_date
 # date_input = "2024-03-11T02:26:18.671407"
 # print(get_date(date_input))
 
-dict_list = [{'id': 41428829,
+""" dict_list = [{'id': 41428829,
               'state': 'EXECUTED',
               'date': '2019-07-03T18:35:29.512364'},
              {'id': 939719570,
@@ -35,3 +36,4 @@ state_filter = 'CANCELED'
 
 print(filter_by_state(dict_list, state_filter))
 print(sort_by_date(dict_list))
+"""
